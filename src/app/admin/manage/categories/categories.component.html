@@ -1,0 +1,41 @@
+<!-- 
+<router-outlet></router-outlet> -->
+
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <a class="btn-sm icon-btn-sm mr-2"
+      [queryParams]="{id:'new'}"
+      [routerLink]="['/admin/manage/categories/opt']"
+      >
+        Add Category
+        <i class="fa fa-plus-circle"></i>
+      </a>
+    </div>
+
+    <div class="col">
+      <a class="btn-sm icon-btn-sm mr-2"
+      [routerLink]="['/admin/manage/categories/tree']"
+      >
+       Categories Tree
+       <i class="fa fa-tree"></i>
+      </a>
+    </div>
+
+    
+
+    <div class="col">
+      <a class="btn-sm icon-btn-sm mr-2"
+      routerLink='/admin/manage/categories/list'
+      >
+        All Categories
+        <i class="fa fa-list"></i>
+      </a>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12 col-sm-12 col-md-12 text-center">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>

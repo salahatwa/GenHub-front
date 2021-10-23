@@ -1,0 +1,29 @@
+
+<div class="hv-wrapper">
+    <ng-template #Item let-item>
+      <ng-container *ngIf="!item.items.length; else Component">
+        <p>{{ item.name }}</p>
+      </ng-container>
+      <ng-template #Component>
+        <div class="hv-item">
+          <div class="hv-item-parent">
+            <p>{{ item.name }}</p>
+          </div>
+          <div class="hv-item-children">
+            <div class="hv-item-child" *ngFor="let child of item.items">
+              <ng-container
+                *ngTemplateOutlet="Item; context: { $implicit: child }"
+              ></ng-container>
+            </div>
+          </div>
+        </div>
+      </ng-template>
+    </ng-template>
+  
+    <ng-container *ngFor="let child of response | converter"
+      ><ng-container
+        *ngTemplateOutlet="Item; context: { $implicit: child }"
+      ></ng-container
+    ></ng-container>
+  </div>
+  

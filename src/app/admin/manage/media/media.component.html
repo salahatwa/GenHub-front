@@ -1,0 +1,42 @@
+<app-image-upload
+  (imageUploaded)="attachImageToPost($event)"
+></app-image-upload>
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Image</th>
+      <th scope="col">Title</th>
+
+      <th scope="col">Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let img of images | paginate: page; let i = index">
+      <th scope="row">{{ i + 1 }}</th>
+
+      <td>
+        <div class="image-container">
+          <img class="img-thumbnail w-25" [src]="img?.path" />
+        </div>
+      </td>
+      <td>{{ img?.name }}</td>
+
+      <td>
+        <button
+          type="button"
+          class="btn btn-secondary ml-2"
+          (click)="deleteImage(img?.fileKey,i)"
+        >
+          Delete
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<pagination-controls
+  *ngIf="images?.length > 0"
+  (pageChange)="getPage($event)"
+  id="{{ page.id }}"
+></pagination-controls>

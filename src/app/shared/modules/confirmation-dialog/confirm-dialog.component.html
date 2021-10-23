@@ -1,0 +1,23 @@
+<div class="modal-header text-left">
+  <h4 class="modal-title w-100">Are you sure you want do this action?</h4>
+</div>
+<div class="modal-body text-left">
+  <p>Are you sure you want do this action , this action can't be undo!</p>
+</div>
+<div class="modal-footer justify-content-center">
+  <button
+    type="button"
+    class="mr-2 btn btn-warning"
+    data-dismiss="modal"
+    (click)="activeModal.dismiss()"
+  >
+    Cancel
+  </button>
+  <button
+    type="button"
+    class="mr-2 btn btn-success"
+    (click)="activeModal.close(true)"
+  >
+    Confirm
+  </button>
+</div>

@@ -1,0 +1,68 @@
+<div class="card mt-5">
+  <div class="card-body">
+    <h6 class="text-center">Categories</h6>
+
+    <alert [id]="alert.id"></alert>
+
+    <!-- <app-section-loading [isLoading]="loading"></app-section-loading> -->
+    <table class="table table-sm table-hover">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Name</th>
+          <th scope="col">Created At</th>
+          <th scope="col">Parent</th>
+          <th scope="col">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr
+          *ngFor="let category of categoryList | paginate: page; let i = index"
+        >
+          <td>{{ category?.id }}</td>
+          <td>{{ category?.name }}</td>
+          <td>{{ category?.createdAt | date: "dd/MM/yyyy" }}</td>
+          <td>{{ category?.parent?.name }}</td>
+          <td>
+            <span *ngIf="isDialog">
+              <input
+                type="radio"
+                id="{{ category?.id }}"
+                [(ngModel)]="selectedParent"
+                [value]="category?.id"
+                name="categories"
+                (change)="onSelectParent($event)"
+                [checked]="selectedParent == category?.id? true : false"
+              />
+            </span>
+
+            <span *ngIf="!isDialog">
+              <a
+                color="dam-success"
+                class="btn-sm icon-btn-sm mr-2"
+                [queryParams]="{ id: category?.id }"
+                [routerLink]="['/admin/manage/categories/opt']"
+              >
+                <i class="fa fa-edit"></i>
+              </a>
+
+              <a
+                color="warn"
+                class="btn-sm icon-btn-sm mr-2"
+                (click)="onDelete(category, i)"
+              >
+                <i class="fa fa-trash"></i>
+              </a>
+            </span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <pagination-controls
+      *ngIf="categoryList?.length > 0"
+      (pageChange)="getPage($event)"
+      id="{{ page.id }}"
+    ></pagination-controls>
+  </div>
+</div>

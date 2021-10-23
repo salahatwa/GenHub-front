@@ -1,0 +1,59 @@
+<ng-template #update_content>Update</ng-template>
+<section>
+  <div class="card mt-5">
+    <!-- <app-section-loading [isLoading]="loading"></app-section-loading> -->
+    <div class="card-body">
+      <h6 class="text-center"><span *ngIf="!category?.id;else update_content">Add</span> Category</h6>
+      <form #categoryForm="ngForm" (ngSubmit)="onSubmit(categoryForm)">
+        <alert [id]="alert.id"></alert>
+        <input
+          type="hidden"
+          name="id"
+          ngModel
+          #id="ngModel"
+          [(ngModel)]="category.id"
+        />
+
+        <div class="form-group">
+          <div
+            [hidden]="name.valid || name.pristine"
+            class="alert alert-danger"
+          >
+            Name Required
+          </div>
+          <input
+            type="text"
+            name="name"
+            class="form-control"
+            ngModel
+            #name="ngModel"
+            placeholder="Enter Category Name"
+            minlength="3"
+            pattern="[0-9a-zA-Z\s\u0600-\u06FF]*"
+            required
+            [(ngModel)]="category.name"
+          />
+        </div>
+
+        <div class="form-group">
+          <button type="button" class="btn btn-info" (click)="selectParent()">Select Parent Category</button>
+        </div>
+
+        <div class="text-center">
+          <button
+            color="dam-success"
+            type="submit"
+            class="mr-2"
+            [disabled]="categoryForm.invalid"
+          >
+            <!-- {{ this.categoryService.valueBtn }} -->
+            Save
+          </button>
+          <button type="reset" class="mr-2" (click)="resetForm(categoryForm)">
+            Reset
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,28 @@
+<div class="modal-header text-left">
+  <h4 class="modal-title w-100">Please select category</h4>
+</div>
+<div class="modal-body text-left">
+  <app-category-list
+    [isDialog]="true"
+    (selectedParentCategory)="onSelectParent($event)"
+    [selectedCategory]="selectedCategory"
+  ></app-category-list>
+</div>
+<div class="modal-footer justify-content-center">
+  <button
+    type="button"
+    class="mr-2 btn btn-warning"
+    data-dismiss="modal"
+    (click)="activeModal.dismiss()"
+  >
+    Cancel
+  </button>
+  <button
+    [disabled]="!selectedCategory?.parent"
+    type="button"
+    class="mr-2 btn btn-success"
+    (click)="activeModal.close(selectedCategory)"
+  >
+    Confirm
+  </button>
+</div>
